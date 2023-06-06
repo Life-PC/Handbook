@@ -1,0 +1,54 @@
+table {
+    width: 98%;
+    margin: 0 auto;
+    position: sticky;
+}
+th {
+    border-bottom: 5px double #CCC;
+    border-top: 5px double #CCC;
+}
+th:first-child {
+    width: 10%;
+}
+th:nth-child(2) {
+    width: 70%;
+}
+th:nth-child(3) {
+    width: 10%;
+}
+th:nth-child(4) {
+    width: 10%;
+}
+td {
+    border-bottom: 2px solid #CCC;
+}
+
+tr {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+#resultListBord tr:first-child {
+    position:-webkit-sticky;
+    position:sticky;
+    top: 0;
+    background-color:yellowgreen;
+}
+tr:nth-child(2n) {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width:780px) {
+    th, td {
+        display: block;
+        width: 100% !important;
+    }
+    tr td:first-child {
+        background-color: yellow;
+    }
+}
+
+.ansCheckFalse {
+    background-color: red !important;
+}
+.ansCheckTrue {
+    background-color: aqua !important;
+}
