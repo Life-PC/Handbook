@@ -1,5 +1,8 @@
 window.onload = function() {
     let qustionCount = getParam('d');
+    let ansCount = getParam('a');
+    document.getElementById('resultNum').innerText = qustionCount + "問中 " + ansCount + "問正解";
+
     let htmlText = '<tr><th>No</th><th>問題文</th><th>回答</th><th>正解</th></tr>';
     for (let i = 0; i < qustionCount; i++) {
         let param = getParam('q' + i);

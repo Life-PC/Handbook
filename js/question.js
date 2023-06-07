@@ -13,6 +13,7 @@ window.onload = function() {
         weekQuestion();
     }
     else {
+        document.getElementById('ansButton').style.display ="none";
         millionQuestion();
     }
 
@@ -21,8 +22,7 @@ window.onload = function() {
 
 
 function dayQuestion() {
-    questionCount = Math.floor(Math.random() * 3);
-    questionCount = questionCount === 0 ? 1 : questionCount;
+    questionCount = 3;
     
     for (let i = 0; i < questionCount; i++) {
         let questionChapter = Math.floor(Math.random() * 11);
@@ -70,6 +70,7 @@ function weekQuestion() {
 function millionQuestion() {
     questionCount = 100;
     let qustionCountOver = 100;
+
     for (let i = 0; i < 12; i++) {
         let questionChapter = i;
         let questionChapterRand = i === 11 ? qustionCountOver : Math.floor(Math.random() * 10);
@@ -137,6 +138,11 @@ function prevButtonClick() {
     let choiceNum = getChoiceSelect();
     questions[questionCounts - 1][8] = choiceNum;
 
+    if (questions[questionCounts - 1][5] === questions[questionCounts - 1][4].split(',')[choiceNum])
+        questions[questionCounts - 1][6] = 1
+    else
+        questions[questionCounts - 1][6] = 0
+
     questionCounts--;
     if (questionCounts <= 0) {
         questionCounts = questionCount;
@@ -148,11 +154,26 @@ function nextButtonClick() {
     let choiceNum = getChoiceSelect();
     questions[questionCounts - 1][8] = choiceNum;
 
+    if (questions[questionCounts - 1][5] === questions[questionCounts - 1][4].split(',')[choiceNum])
+        questions[questionCounts - 1][6] = 1
+    else
+        questions[questionCounts - 1][6] = 0
+
     questionCounts++;
     if (questionCounts > questionCount) {
         let ans = confirm('結果を表示しますか？');
         if (ans) {
+
             let hrefText = 'result.html?d=' + questionCount;
+            let ansCount = 0;
+            for (let i = 0; i < questionCount; i++) {
+                if (questions[i][7] === 0 && questions[i][6] === 1) {
+                    ansCount++;
+                }
+            }
+
+            hrefText = hrefText + '&a=' + ansCount;
+
             for (let i = 0; i < questionCount; i++) {
                 hrefText = hrefText + 
                 '&q' + i + '=' + 
